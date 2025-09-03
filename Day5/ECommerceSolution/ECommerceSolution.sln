@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogLib", "CatalogLib\CatalogLib.csproj", "{9B966D2C-8B29-4DB0-8355-349DA8B8C7B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShoppingPortal", "OnlineShoppingPortal\OnlineShoppingPortal.csproj", "{5D7A18A4-BA2D-475B-9601-52DC0E4F46D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B966D2C-8B29-4DB0-8355-349DA8B8C7B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B966D2C-8B29-4DB0-8355-349DA8B8C7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B966D2C-8B29-4DB0-8355-349DA8B8C7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B966D2C-8B29-4DB0-8355-349DA8B8C7B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D7A18A4-BA2D-475B-9601-52DC0E4F46D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D7A18A4-BA2D-475B-9601-52DC0E4F46D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D7A18A4-BA2D-475B-9601-52DC0E4F46D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D7A18A4-BA2D-475B-9601-52DC0E4F46D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
