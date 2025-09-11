@@ -1,10 +1,16 @@
 ﻿using Drawing;
 using System.Collections.Generic;
 
-using (List<Line> lines = new List<Line>())
+using (Line line = new Line())
 {
-  lines l1 = new lines(new Point { X = 0, Y = 0 }, new Point { X = 10, Y = 10 }, "Red", 2);
-  lines l2 = new lines(new Point { X = 20, Y = 20 }, new Point { X = 30, Y = 30 }, "Blue", 3);
+  List<Line> lines = new List<Line>();
+
+  Line l1 = new Line(new Point(12, 56), new Point(350, 100), Color.Red, 2);
+  Line l2 = new Line(new Point(100, 200), new Point(300, 400), Color.Blue, 3);
+  Line l3 = new Line(new Point(50, 60), new Point(500, 600), Color.Green, 4);
+
   lines.Add(l1);
   lines.Add(l2);
+  lines.Add(l3);
 }
+

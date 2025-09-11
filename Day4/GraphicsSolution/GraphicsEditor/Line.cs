@@ -10,16 +10,16 @@ public class Line : Shape, IDisposable
     Start = new Point();
     End = new Point();
   }
-  public Line(Point start, Point end, string Color, int BorderWidth)
+  public Line(Point start, Point end, Color color, int BorderWidth)
   {
     Start = start;
     End = end;
-    this.Color = Color;
+    this.ShapeColor = color;
     this.BorderWidth = BorderWidth;
   }
   public override void Draw()
   {
-    Console.WriteLine($"Drawing Line from ({Start.X}, {Start.Y}) to ({End.X}, {End.Y}) with color {Color} and border width {BorderWidth}");
+    Console.WriteLine($"Drawing Line from {Start} to {End}) with color {ShapeColor} and border width {BorderWidth}");
   }
   ~Line()
   {

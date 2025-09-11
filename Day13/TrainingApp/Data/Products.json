@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 1,
+    "Name": "C# Basics",
+    "Description": "Introduction to C# programming language.",
+    "StartDate": "2024-07-01",
+    "EndDate": "2024-07-05",
+    "Price": 499.99
+  },
+  {
+    "Id": 2,
+    "Name": "ASP.NET Core",
+    "Description": "Building web applications with ASP.NET Core.",
+    "StartDate": "2024-07-10",
+    "EndDate": "2024-07-15",
+    "Price": 699.99
+  },
+  {
+    "Id": 3,
+    "Name": "Entity Framework Core",
+    "Description": "Data access with Entity Framework Core.",
+    "StartDate": "2024-07-20",
+    "EndDate": "2024-07-25",
+    "Price": 599.99
+  }
+]

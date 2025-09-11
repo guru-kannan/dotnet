@@ -10,17 +10,17 @@ public class Circle : Shape, IDisposable
     Center = new Point();
     Radius = 0.0;
   }
-  public Circle(Point center, double radius, string Color, int BorderWidth)
+  public Circle(Point center, double radius, Color color, int borderWidth)
   {
     Center = center;
     Radius = radius;
-    this.Color = Color;
-    this.BorderWidth = BorderWidth;
+    this.ShapeColor = color;
+    this.BorderWidth = borderWidth;
   }
 
   public override void Draw()
   {
-    Console.WriteLine($"Drawing Circle at ({Center.X}, {Center.Y}) with radius {Radius}, color {Color}, and border width {BorderWidth}");
+    Console.WriteLine($"Drawing Circle at {Center} with radius {Radius}, color {this.ShapeColor}, and border width {BorderWidth}");
   }
 
   ~Circle()

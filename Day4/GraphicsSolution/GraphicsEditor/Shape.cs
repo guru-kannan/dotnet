@@ -1,4 +1,4 @@
-using Drawing;
+namespace Drawing;
 
 public enum Color
 {
@@ -12,7 +12,7 @@ public enum Color
 
 public abstract class Shape
 {
-  public string Color { get; set; }
+  public Color ShapeColor { get; set; }
   public int BorderWidth { get; set; }
   public abstract void Draw();
 }
