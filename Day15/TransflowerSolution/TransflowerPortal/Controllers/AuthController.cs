@@ -38,13 +38,14 @@ public class AuthController : Controller
     [HttpPost]
     public IActionResult Login(string email, string password)
     {
-
-        if (email == "admin@admin.com" && password == "pass")
+        var customers = new CustomerService(new CustomerRepository()).GetAllCustomers()?.ToList() ?? new List<Customer>();
+        var customer = customers.FirstOrDefault(c => c.Email == email && c.Password == password);
+        if (customer != null)
         {
             // this.Response.Redirect("/home/index");
-            this.Response.Redirect("/products/index");
+            this.Response.Redirect("/home/index");
         }
-
+        ViewData["Error"] = "Invalid Email or Password";
         return View();
     }
 
