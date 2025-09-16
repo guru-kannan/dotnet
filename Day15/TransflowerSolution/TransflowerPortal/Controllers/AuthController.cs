@@ -22,7 +22,7 @@ public class AuthController : Controller
 
     public AuthController()
     {
-
+        _customerService = new CustomerService(new CustomerRepository());
     }
 
 
@@ -38,7 +38,7 @@ public class AuthController : Controller
     [HttpPost]
     public IActionResult Login(string email, string password)
     {
-        var customers = new CustomerService(new CustomerRepository()).GetAllCustomers()?.ToList() ?? new List<Customer>();
+        var customers = _customerService.GetAllCustomers()?.ToList() ?? new List<Customer>();
         var customer = customers.FirstOrDefault(c => c.Email == email && c.Password == password);
         if (customer != null)
         {
