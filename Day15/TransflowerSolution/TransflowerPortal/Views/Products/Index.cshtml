@@ -1,0 +1,36 @@
+<!--  server side View  -->
+<!--  Razor View for displaying list of products  -->
+
+@using CatalogEntities;
+<!-- Razor view Engine -->
+
+@{
+    int count = 0;
+    count++;
+    if(count > 1)
+    {
+        <text>Count is greater than 1</text>
+    }
+    else
+    {
+        <text>Count is 1 or less</text>
+    }
+    ViewData["Title"] = "Product List";
+}
+
+
+<!-- all product list  -->
+
+@{
+    List<Product> products = Model;
+    foreach(var product in products)
+    {
+        <div>
+            <h3>@product.Title</h3>
+            <p>Price: @product.Price</p>
+            <p>Description: @product.Description</p>
+        </div>
+    }
+}
+
+

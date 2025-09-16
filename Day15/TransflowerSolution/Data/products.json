@@ -1,0 +1,23 @@
+[
+    {
+        "Id": 1,
+        "Title": "Rose Bouquet",
+        "Description": "A beautiful bouquet of red roses.",
+        "Price": 29.99,
+        "ImageUrl": "/images/rose.jpg"
+    },
+    {
+        "Id": 2,
+        "Title": "Tulip Arrangement",
+        "Description": "A vibrant arrangement of colorful tulips.",
+        "Price": 24.99,
+        "ImageUrl": "/images/tulip.jpg"
+    },
+    {
+        "Id": 3,
+        "Title": "Sunflower Basket",
+        "Description": "A cheerful basket of sunflowers.",
+        "Price": 34.99,
+        "ImageUrl": "/images/sunflower.jpg"
+    }
+]

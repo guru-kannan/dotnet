@@ -1,12 +1,20 @@
-using TrainingRepo;
-using TrainingServices;
+using CatalogRepositories;
+using CatalogServices; 
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<ITrainingRepo, TrainingRepo.TrainingRepo>();
-builder.Services.AddScoped<ITrainingService, TrainingServices.TrainingServices>();
+
+//CRM Repository and Service Registration
+
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+//builder.Services.AddTransient<IProductService, ProductService>();
+//builder.Services.AddSinglton<IProductService, ProductService>();
+
 
 var app = builder.Build();
 
@@ -19,10 +27,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapControllerRoute(

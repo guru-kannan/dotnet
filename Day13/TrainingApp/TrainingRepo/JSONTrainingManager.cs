@@ -7,7 +7,8 @@ using System.IO;
 
 public class JSONTrainingManager
 {
-  private static string GetFilePath() => Path.Combine(Directory.GetCurrentDirectory(), "Data", "trainings.json");
+  // private static string GetFilePath() => Path.Combine(Directory.GetCurrentDirectory(), "Trainings.json");
+  private static string GetFilePath() => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Trainings.json");
   public static List<Training> LoadTrainings()
   {
     var filePath = GetFilePath();

@@ -1,0 +1,13 @@
+@using CatalogEntities;
+@{
+
+    //strongly typed view
+
+   // Product product = (Product)ViewData["theProduct"];  // classical way of type casting
+    Product product = ViewData["theProduct"] as Product;  // modern way of type casting
+
+    <p>@product.Title</p>
+    <p>@product.Price</p>
+    <p>@product.Description</p>
+    <img src="@product.ImageUrl"  width="200" height="200" alt="@product.Title" />
+}

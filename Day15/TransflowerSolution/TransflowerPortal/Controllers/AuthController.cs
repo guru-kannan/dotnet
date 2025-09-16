@@ -1,0 +1,72 @@
+
+namespace TransflowerPortal.Controllers;
+
+using CatalogEntities;
+using CatalogServices;
+using Microsoft.AspNetCore.Mvc;
+using CustomerEntities;
+using CustomerRepository;
+using CustomerServices;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+
+//it provides enum, classes, interfaces,
+//delegates, events for building ASP.NET Core applications.
+
+public class AuthController : Controller
+{
+
+
+    //Dependency Injection for ICustomerService, CustomerService
+
+    public AuthController()
+    {
+
+    }
+
+
+    [HttpGet]   //attribute , Decorator, Annotation, Metadata
+                //Action Filter
+    public IActionResult Login()
+    {
+
+        return View();
+    }
+
+
+    [HttpPost]
+    public IActionResult Login(string email, string password)
+    {
+
+        if (email == "admin@admin.com" && password == "pass")
+        {
+            // this.Response.Redirect("/home/index");
+            this.Response.Redirect("/products/index");
+        }
+
+        return View();
+    }
+
+
+    [HttpGet]
+    public IActionResult Register()
+    {
+        return View();
+    }
+    [HttpPost]
+    public IActionResult Register(string firstname, string lastname, string email, string password)
+    {
+        Customer customer = new Customer();
+        customer.FirstName = firstname;
+        customer.LastName = lastname;
+        customer.Email = email;
+        customer.Password = password;
+        var customers = new CustomerService(new CustomerRepository()).GetAllCustomers()?.ToList() ?? new List<Customer>();
+        customer.Id = customers.Count + 1;
+        customers.Add(customer);
+        JsonCustomerManager.SaveCustomers(customers);
+        return Redirect("/Auth/Login");
+    }
+
+}
