@@ -19,7 +19,7 @@ public class AuthController : Controller
 
 
     //Dependency Injection for ICustomerService, CustomerService
-
+    private readonly ICustomerService _customerService;
     public AuthController()
     {
         _customerService = new CustomerService(new CustomerRepository());
@@ -42,13 +42,11 @@ public class AuthController : Controller
         var customer = customers.FirstOrDefault(c => c.Email == email && c.Password == password);
         if (customer != null)
         {
-            // this.Response.Redirect("/home/index");
             this.Response.Redirect("/home/index");
         }
         ViewData["Error"] = "Invalid Email or Password";
         return View();
     }
-
 
     [HttpGet]
     public IActionResult Register()

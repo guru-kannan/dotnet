@@ -19,3 +19,8 @@
     </form>
 </table>
 <a href="/auth/register">New User</a>
+
+@if (ViewData["Error"] != null)
+{
+    <div style="color:red">@ViewData["Error"]</div>
+}
