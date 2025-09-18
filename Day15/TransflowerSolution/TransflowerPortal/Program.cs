@@ -1,5 +1,8 @@
 using CatalogRepositories;
-using CatalogServices; 
+using CatalogServices;
+using CustomerRepository;
+using CustomerServices;
+using Microsoft.AspNetCore.Authentication.Cookies; 
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,9 +15,15 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
-//builder.Services.AddTransient<IProductService, ProductService>();
-//builder.Services.AddSinglton<IProductService, ProductService>();
-
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository.CustomerRepository>();
+builder.Services.AddScoped<ICustomerService, CustomerServices.CustomerService>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/auth/login"; // Set the login path
+        options.LogoutPath = "/auth/logout"; // Set the logout path
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Set cookie expiration time
+    });
 
 var app = builder.Build();
 
@@ -28,6 +37,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -10,6 +10,9 @@ using CustomerServices;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 //it provides enum, classes, interfaces,
 //delegates, events for building ASP.NET Core applications.
@@ -36,16 +39,28 @@ public class AuthController : Controller
 
 
     [HttpPost]
-    public IActionResult Login(string email, string password)
+    public async Task<IActionResult> Login(string email, string password)
     {
-        var customers = _customerService.GetAllCustomers()?.ToList() ?? new List<Customer>();
-        var customer = customers.FirstOrDefault(c => c.Email == email && c.Password == password);
+        var customer = _customerService.ValidateCustomer(email, password);
         if (customer != null)
         {
-            this.Response.Redirect("/home/index");
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, customer.Email)
+            };
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+            this.Response.Redirect("/home/welcome");
         }
         ViewData["Error"] = "Invalid Email or Password";
         return View();
+    }
+
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return Redirect("/Auth/Login");
     }
 
     [HttpGet]

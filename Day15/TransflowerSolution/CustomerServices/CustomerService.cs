@@ -33,4 +33,9 @@ public class CustomerService : ICustomerService
   {
     _customerRepository.UpdateCustomer(customer);
   }
+
+  public Customer? ValidateCustomer(string email, string password)
+  {
+    return _customerRepository.GetAllCustomers().FirstOrDefault(c => c.Email == email && c.Password == password);
+  }
 }
