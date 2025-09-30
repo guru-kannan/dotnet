@@ -1,4 +1,4 @@
-namespace TransflowerPortal.Models;
+namespace ShoppingApp.API.Models;
 
 public class ErrorViewModel
 {
