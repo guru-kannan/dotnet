@@ -1,26 +1,39 @@
-
 <!--Login View-->
 <h2>Login</h2>
 <hr/>
-<table>
-    <form method="POST" action="/auth/login">
-        <tr>
-            <td>Email Address</td>
-            <td><input type="email" name="email" id="email"/></td>
-    </tr>
-    <tr>
-            <td>Password</td>
-            <td><input type="password" name="password" id="password"/></td>
-    </tr>
-    <tr>
-            <td></td>
-            <td><button type="submit" id="btnLogin">Login</button></td>
-    </tr>
-    </form>
-</table>
+<form method="POST" action="/auth/login">
+    <label for="email">Email Address</label>
+    <input type="email" name="email" id="email" required />
+    
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required />
+    
+    <div>
+        <input type="checkbox" id="rememberMe" name="rememberMe" onclick="handleRememberMe()" />
+        <label for="rememberMe">Remember Me</label>
+    </div>
+    
+    <button type="submit" id="btnLogin">Login</button>
+</form>
+
+
 <a href="/auth/register">New User</a>
 
 @if (ViewData["Error"] != null)
 {
     <div style="color:red">@ViewData["Error"]</div>
 }
+
+<script>
+    function handleRememberMe() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        console.log(email + "  " + password);
+
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+
+        sessionStorage.setItem("email", 'email from session : '+ email);
+        sessionStorage.setItem("password", 'password from session : '+ password);
+    }
+</script>

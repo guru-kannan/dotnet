@@ -1,27 +1,45 @@
+<h2>Welcome to Transflower Portal</h2>
 
-@* @{
-    Customers customers = ViewData["CustomersList"] as Customers;
-}
-<h1>@</h1> *@
-<h2>Customers List</h2>
-<p>Customers List</p>
-@* <table border="1">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var customer in Model)
-        {
-            <tr>
-                <td>@customer.Id</td>
-                <td>@customer.FirstName</td>
-                <td>@customer.LastName</td>
-                <td>@customer.Email</td>
-            </tr>
-        }
-    </tbody> *@
+<div style="max-width: 400px; margin: 20px auto; font-family: Arial, sans-serif;">
+    <button type="button" onclick="getLocalStorageData()" 
+            style="padding: 8px 16px; margin-bottom: 15px; cursor: pointer;">
+        Get Data
+    </button>
+
+    <div style="margin-bottom: 10px;">
+        <strong>Email:</strong> 
+        <span id="lblEmail" style="color: #333; margin-left: 8px;"></span>
+    </div>
+    <div style="margin-bottom: 10px;">
+        <strong>Password:</strong> 
+        <span id="lblPassword" style="color: #333; margin-left: 8px;"></span>
+    </div>
+
+    <hr style="margin: 15px 0;" />
+
+    <div style="margin-bottom: 10px;">
+        <strong>Email from Session:</strong> 
+        <span id="lblSessionEmail" style="color: #333; margin-left: 8px;"></span>
+    </div>
+    <div style="margin-bottom: 10px;">
+        <strong>Password from Session:</strong> 
+        <span id="lblSessionPassword" style="color: #333; margin-left: 8px;"></span>
+    </div>
+    <div>
+    <a href="/statemgmt">State Management</a>
+    </div>
+</div>
+
+<script>
+    function getLocalStorageData() {
+        var email = localStorage.getItem("email");
+        var password = localStorage.getItem("password");
+        document.getElementById("lblEmail").innerText = email || "(not set)";
+        document.getElementById("lblPassword").innerText = password || "(not set)";
+
+        var semail = sessionStorage.getItem("email");
+        var spassword = sessionStorage.getItem("password");
+        document.getElementById("lblSessionEmail").innerText = semail || "(not set)";
+        document.getElementById("lblSessionPassword").innerText = spassword || "(not set)";
+    }
+</script>
