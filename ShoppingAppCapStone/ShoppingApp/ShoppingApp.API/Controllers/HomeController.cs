@@ -1,7 +1,6 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-[Authorize]
+namespace ShoppingApp.API.Controllers;
 public class HomeController : Controller
 {
     public IActionResult Index()

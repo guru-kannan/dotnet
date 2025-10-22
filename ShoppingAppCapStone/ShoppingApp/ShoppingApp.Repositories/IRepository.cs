@@ -1,9 +1,3 @@
-using MongoDB.Bson;
-using MongoDB.Driver;
-using ShoppingApp.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace ShoppingApp.Repositories;
 
 public interface IRepository<T> where T : class
@@ -13,4 +7,5 @@ public interface IRepository<T> where T : class
   Task CreateAsync(T entity);
   Task UpdateAsync(string id, T entity);
   Task DeleteAsync(string id);
+  Task <T?> FindByUsernameAsync(string username);
 }

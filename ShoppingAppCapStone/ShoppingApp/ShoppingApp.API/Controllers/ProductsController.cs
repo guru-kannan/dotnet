@@ -1,17 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.Entities;
+using ShoppingApp.Repositories;
 using ShoppingApp.Services;
 
 namespace ShoppingApp.API.Controllers;
 [ApiController]
 [Route("api/[controller]")]
-public class ProductsController : ControllerBase
+public class ProductsController : Controller
 {
     private readonly IProductService _productService;
+    private readonly IProductRepository _productRepository;
 
-    public ProductsController(IProductService productService)
+
+    public ProductsController(IProductService productService, IProductRepository productRepository)
     {
         _productService = productService;
+        _productRepository = productRepository;
     }
 
     [HttpGet]
@@ -62,4 +66,10 @@ public class ProductsController : ControllerBase
         await _productService.DeleteProductAsync(id);
         return NoContent();
     }
+    public async Task<IActionResult> Index()
+    {
+        var products = await _productService.GetAllProductsAsync();
+        return View(products);
+    }
+
 }

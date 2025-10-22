@@ -3,7 +3,7 @@ using ShoppingApp.Repositories;
 
 namespace ShoppingApp.Services;
 
-public class UserService: IUserService
+public class UserService : IUserService
 {
     private readonly IRepository<User> _userRepository;
 
@@ -24,7 +24,32 @@ public class UserService: IUserService
 
     public async Task CreateUserAsync(User user)
     {
+        // Check if username already exists
+        var existingUser = await _userRepository.FindByUsernameAsync(user.Username);
+        if (existingUser != null)
+        {
+            throw new Exception("Username already exists.");
+        }
+
+        // For demonstration, let's assume the password is passed in plain text
+        var plainPassword = user.PasswordHash; // In real scenarios, use a separate field for plain password
+        if (string.IsNullOrWhiteSpace(plainPassword) || plainPassword.Length < 6)
+        {
+            throw new Exception("Password must be at least 6 characters long.");
+        }
+        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(plainPassword);
+
         await _userRepository.CreateAsync(user);
+    }
+    
+    public async Task<bool> ValidateUserCredentialsAsync(string username, string inputPassword)
+    {
+        var user = await _userRepository.FindByUsernameAsync(username);
+        if (user == null)
+            return false;
+
+        // Verify password
+        return BCrypt.Net.BCrypt.Verify(inputPassword, user.PasswordHash);
     }
 
     public async Task UpdateUserAsync(string id, User user)

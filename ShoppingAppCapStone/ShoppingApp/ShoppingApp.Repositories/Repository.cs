@@ -1,8 +1,4 @@
-using MongoDB.Bson;
 using MongoDB.Driver;
-using ShoppingApp.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ShoppingApp.Repositories;
 
@@ -41,5 +37,11 @@ public class Repository<T> : IRepository<T> where T : class
   {
     var filter = Builders<T>.Filter.Eq("Id", id);
     await _collection.DeleteOneAsync(filter);
+  }
+  public async Task<T?> FindByUsernameAsync(string username)
+  {
+    Console.WriteLine("Coming here");
+    var filter = Builders<T>.Filter.Eq("Username", username);
+    return await _collection.Find(filter).FirstOrDefaultAsync();
   }
 }

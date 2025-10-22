@@ -33,13 +33,6 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
-    [HttpPost]
-    public async Task<ActionResult> CreateUser([FromBody] User user)
-    {
-        await _userService.CreateUserAsync(user);
-        return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
-    }
-
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateUser(string id, [FromBody] User user)
     {
